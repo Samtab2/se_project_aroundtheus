@@ -18,7 +18,7 @@ Technologies used:  I used VS Code for creating the main layout of the website f
 
 Link To website on GitHub -
 
-https://github.com/Samtab2/se_project_aroundtheus
+https://samtab2.github.io/se_project_aroundtheus/
 
   
 
