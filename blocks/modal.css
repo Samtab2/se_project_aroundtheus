@@ -1,0 +1,156 @@
+.modal {
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+background-color: rgba(0, 0, 0, 0.5);
+z-index: 99;
+display: none;
+padding: 0 19px;
+}
+
+.modal_opened {
+display: flex;
+}
+
+.modal__container {
+position: relative;
+background-color: white;
+margin: auto;
+border-radius: 10px;
+width: 430px;
+height: 330px;
+box-sizing: border-box;
+padding: 34px 36px 36px;
+}
+
+.modal__close {
+background-image: url(../images/Close-button.svg);
+border: none;
+background-color: transparent;
+cursor: pointer;
+position: absolute;
+top: -45px;
+right: -45px;
+width: 40px;
+height: 40px;
+background-repeat: no-repeat;
+background-size: contain;
+}
+
+.modal__close:hover {
+  opacity: 0.6;
+  transition: 1s linear;  
+}
+
+
+
+.modal__form {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.modal__heading {
+color: black;
+max-width: 330px;
+max-height: 23px;
+font-size: 24px;
+font-weight: 900;
+line-height: 1.2;
+margin: 0;
+padding: 0;
+}
+
+.modal__title {
+margin: 54px 0 30px 0;
+height: 27px;
+padding: 0 0 0 5px;
+border: none;
+border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+font-size: 14px;
+line-height: 1.2;
+}
+
+.modal__title:hover {
+color: #000;
+}
+
+.modal__description {
+border: none;
+height: 27px;
+padding: 0 0 0 5px;
+border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+margin: 0 0 45px;
+font-size: 14px;
+line-height: 1.2;
+}
+
+.modal__description:hover {
+color: #000;
+}
+
+.modal__button {
+width: 358px;
+height: 50px;
+border-radius: 2px;
+color: white;
+background-color: #000;
+font-size: 18px;
+line-height: 1.1;
+cursor: pointer;
+margin: 0;
+padding: 0;
+}
+
+.modal__button {
+    opacity: 0.8;
+    transition: 1s linear;
+}
+
+
+@media screen and (max-width: 630px) {
+    .modal__container {
+      max-width: 282px;
+      max-height: 322px;
+      padding: 25px 22px 25px;
+    }
+  
+    .modal__button {
+      max-width: 238px;
+      max-height: 46px;
+    }
+  
+    .modal__close {
+      top: -56px;
+      right: 5px;
+      width: 26px;
+      height: 26px;
+    }
+  
+    .modal__button {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+  }
+  
+  @media screen and (max-width: 520px) {
+    .modal__heading {
+      max-width: 238px;
+      font-size: 18px;
+    }
+  
+    .modal__title {
+      margin: 75px 0 30px 0;
+      height: 27px;
+      min-width: 238px;
+    }
+  
+    .modal__description {
+      margin: 0 0 45px;
+      height: 27px;
+      min-width: 238px;
+    }
+  }
