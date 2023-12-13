@@ -59,5 +59,27 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
+/* EVENT HANDLERS */
 
+function handleProfileEditSubmit(e) {
+  e.preventDefault();
+  profileName.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  closePopup();
+}
 
+/* EVENT LISTENERS */
+
+profileEditButton.addEventListener("click", () => {
+  profileTitleInput.value = profileName.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+  profileEditModal.classList.add("modal_opened");
+});
+modalCloseButton.addEventListener("click", closePopup);
+
+profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+
+initialCards.forEach((cardData) => {
+  const cardElement = getCardElement(cardData);
+  cardListEl.append(cardElement);
+});
