@@ -20,6 +20,5 @@ Link To website on GitHub -
 
 https://samtab2.github.io/se_project_aroundtheus/
 
-Link To Video for Watch my project -
 
 
