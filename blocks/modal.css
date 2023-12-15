@@ -41,7 +41,7 @@
 }
 
 .modal__form-input {
-  width: 358px;
+  width: 358px; 
   height: 27.34px;
   margin-bottom: 29.74px;
   padding: 0;
@@ -50,7 +50,7 @@
   border-width: 1px;
 }
 
-.modal__form-input:nth-of-type(2n) {
+.modal__form-input:last-of-type {
   margin-bottom: 0;
 }
 
