@@ -60,6 +60,9 @@
   opacity: 50%;
 }
 
+.cards__like-button_active {
+ background-image: url(../images/Union.svg) ;
+}
 
 @media screen and (max-width: 620px) {
   .cards {
