@@ -9,7 +9,11 @@
 }
 
 .cards {
-  padding-top: 51px;
+  padding-top: 30px;
+}
+
+.cards_list-order {
+ position: relative;
 }
 
 .cards__image {
