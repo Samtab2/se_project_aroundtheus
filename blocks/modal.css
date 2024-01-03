@@ -35,6 +35,16 @@
   padding: 34px 36px;
 }
 
+.modal__image-container {
+  background-color: transparent;
+  padding-top: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -54,6 +64,12 @@
 .modal__form-input:last-of-type {
   margin-bottom: 0;
 }
+
+.modal__input-type-url:last-of-type {
+  margin-bottom: 0;
+}
+
+
 
 .modal__button {
   font-size: 18px;
