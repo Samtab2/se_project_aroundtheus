@@ -57,11 +57,29 @@
 }
 
 .cards__like-button:hover {
-  opacity: 50%;
+  opacity: 0.5;
 }
 
 .cards__like-button_active {
- background-image: url(../images/Union.svg) ;
+ background-image: url(../images/Union.svg);
+}
+
+.cards__trash-button {
+background: transparent url(../images/Trash.svg) center no-repeat;
+width: 18px;
+height: 19.3px;
+transition: opacity 0.3s linear;
+border: none;
+padding: 0;
+position: absolute;
+top: 18px;
+right: 15px;
+cursor: pointer;
+}
+
+.cards__trash-button:hover {
+ opacity: 0.5;
+ cursor: pointer;
 }
 
 @media screen and (max-width: 620px) {
