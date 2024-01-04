@@ -99,8 +99,6 @@
  margin-bottom: 0;
 }
 
-
-
 .modal__button {
   font-size: 18px;
   width: 100%;
@@ -149,11 +147,11 @@
     height: 322px;
   }
   .modal__form-input {
-    width: 100%;
+    width: 238px;
     height: 27px;
   }
   .modal__button {
-    width: 100%;
+    width: 238px;
     height: 46px;
   }
   .modal__close {

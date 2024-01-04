@@ -100,7 +100,7 @@ function handleProfileEditSubmit(e) {
 
 function renderCard(cardData) {
   const cardElement = getCardElement(cardData);
-  CardsWrap.append(cardElement);
+  CardsWrap.prepend(cardElement);
 }
 function handleAddCardFormSubmit(e) {
   e.preventDefault();
@@ -138,5 +138,5 @@ previewImageCloseButton.addEventListener("click", () =>
 );
 
 initialCards.forEach((cardData) => {
-  renderCard(cardData, CardsWrap);
+  CardsWrap.append(getCardElement(cardData));
 });
