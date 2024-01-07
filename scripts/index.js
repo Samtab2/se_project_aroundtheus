@@ -105,13 +105,13 @@ function renderCard(cardData) {
 function handleAddCardFormSubmit(e) {
   e.preventDefault();
   const cardTitleInput = addCardFormElement.querySelector(
-    ".modal__input-type-title"
+    "TitleInput"
   );
   const cardUrlInput = addCardFormElement.querySelector(
-    ".modal__input-type-url"
+    "UrllInput"
   );
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
+  const name = TitleInput.value;
+  const link = UrlInput.value;
   renderCard({ name, link }, cardsWrap);
   addCardFormElement.reset();
   closePopup(addCardModal);
