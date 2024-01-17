@@ -51,6 +51,8 @@ const previewImageTitle = document.querySelector(".modal__image-title");
 const previewImageCloseButton = document.querySelector("#image-close-modal");
 const previewImage = document.querySelector(".modal__image");
 
+
+
 /* FUNCTIONS */
 
 function closePopup(modal) {
@@ -140,3 +142,28 @@ previewImageCloseButton.addEventListener("click", () =>
 initialCards.forEach((cardData) => {
   cardsWrap.append(getCardElement(cardData));
 });
+
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalEscape);
+  modal.addEventListener("mousedown", closeModalOutside);
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEscape);
+  modal.removeEventListener("mousedown", closeModalOutside);
+}
+
+function closeModalEscape(e) {
+  if (e.key === "Escape") {
+    const modal = document.querySelector(".modal_opened");
+    closeModal(modal);
+  }
+}
+
+function closeModalOutside(e) {
+  if (e.target === e.currentTarget) {
+    closeModal(e.currentTarget);
+  }
+}
