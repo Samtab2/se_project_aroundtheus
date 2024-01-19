@@ -71,7 +71,7 @@
           id="profile-modal-close-button"
           type="button"></button>
         <h2 class="modal__heading">Edit Profile</h2>
-        <form class="modal__form">
+        <form class="modal__form" id="profile-edit-form" novalidate>
           <input
             type="text"
             name="title"
@@ -89,7 +89,8 @@
             class="modal__form-input"
             id="profile-description-input"
             maxlength="200"
-            minlength="2" />
+            minlength="2"
+            required />
           <span class="modal__error" id="profile-description-input-error"></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
@@ -112,7 +113,8 @@
             placeholder="Title"
             required
             maxlength="30"
-            minlength="1" />
+            minlength="1"
+             required />
           <span class="modal__error" id="TitleInput-error"></span>
           <input
             type="url"
@@ -125,7 +127,8 @@
           <button
             class="modal__button modal__button_disabled"
             id="modal__submit"
-            type="submit">
+            type="submit"
+            disabled>
             Save
           </button>
         </form>
