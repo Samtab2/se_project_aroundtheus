@@ -50,7 +50,8 @@ const previewImageModal = document.querySelector("#preview__image-modal");
 const previewImageTitle = document.querySelector(".modal__image-title");
 const previewImageCloseButton = document.querySelector("#image-close-modal");
 const previewImage = document.querySelector(".modal__image");
-
+const titleInput = document.querySelector("#titleInput");
+const urlInput = document.querySelector("#urlInput");
 
 
 /* FUNCTIONS */
@@ -130,9 +131,6 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 
-previewImageCloseButton.addEventListener("click", () =>
-  closeModal(previewImageModal)
-);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
