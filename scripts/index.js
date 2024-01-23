@@ -29,7 +29,7 @@ const initialCards = [
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileModalCloseButton = profileEditModal.querySelector("#profile-modal-close-button");
+const profileModalCloseButton = profileEditModal.querySelector(".modal__form");
 const profileName = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -89,7 +89,7 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileName.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closePopup(profileEditModal);
+  closeModal(profileEditModal);
 }
 
 function renderCard(cardData) { 
@@ -103,8 +103,8 @@ function handleAddCardFormSubmit(e) {
   const name = titleInput.value;
   const link = urlInput.value;
   renderCard({ name, link }, cardsWrap);
-  evt.target.reset();
-  closePopup(addCardModal);
+  e.target.reset();
+  closeModal(addCardModal);
 }
 
 /* EVENT LISTENERS */
