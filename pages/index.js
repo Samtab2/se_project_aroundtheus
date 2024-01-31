@@ -1,3 +1,7 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -24,6 +28,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
 
 /* ELEMENTS */
 
@@ -52,6 +57,8 @@ const previewImageCloseButton = document.querySelector("#image-close-modal");
 const previewImage = document.querySelector(".modal__image");
 const titleInput = document.querySelector("#titleInput");
 const urlInput = document.querySelector("#urlInput");
+
+
 
 
 /* FUNCTIONS */
@@ -84,7 +91,11 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
+
 /* EVENT HANDLERS */
+
+
+
 
 function handleProfileEditSubmit(e) {
   e.preventDefault();
@@ -114,6 +125,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal)
+
 });
 
 const closeButtons = document.querySelectorAll(".modal__close");
@@ -125,6 +137,9 @@ closeButtons.forEach((button) => {
 }
 );
 
+previewImageCloseButton.addEventListener("click", () => {
+  closeModal(previewImageModal);
+});
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
@@ -158,3 +173,6 @@ function closeModalOutside(e) {
     closeModal(e.currentTarget);
   }
 }
+
+
+
