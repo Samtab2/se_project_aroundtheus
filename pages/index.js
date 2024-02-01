@@ -2,6 +2,8 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
 
+
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -28,6 +30,23 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const cardData =  {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+  name : "Lake Lousie",
+  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+  name : "Bald Mountains",
+  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+  name : "Latemar",
+  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+  name : "Vanoise National Park",
+  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+  name : "Lago di Braies",
+  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+};
+
+
 
 
 /* ELEMENTS */
@@ -59,6 +78,19 @@ const titleInput = document.querySelector("#titleInput");
 const urlInput = document.querySelector("#urlInput");
 
 
+const formValidatorConfig = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__error",
+  errorClass: "modal__error_visible",
+};
+
+const  profileEditFormValidator = new FormValidator(formValidatorConfig, profileEditForm);
+profileEditFormValidator.enableValidation();
+
+
 
 
 /* FUNCTIONS */
@@ -88,7 +120,6 @@ function getCardElement(cardData) {
     openModal(previewImageModal);
   });
 
-  return cardElement;
 }
 
 
@@ -105,8 +136,9 @@ function handleProfileEditSubmit(e) {
 }
 
 function renderCard(cardData) { 
-  const cardElement = getCardElement(cardData); 
-  cardsWrap.prepend(cardElement); 
+  const renderNewCard = card.generateCard();
+  const card = new Card(cardData, "#card-template"); 
+  cardsWrap.prepend(renderNewCard); 
 } 
 
 
@@ -147,7 +179,6 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 
 
-initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -174,5 +205,8 @@ function closeModalOutside(e) {
   }
 }
 
+initialCards.forEach((cardData) => {
+  const cardElement = renderCard(cardData, cardListEl);
+});
 
 
