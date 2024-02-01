@@ -6,8 +6,6 @@ export default class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._formElement = form;
-    this._inputEls = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
     }
 
 
@@ -65,9 +63,9 @@ _checkInputValidity = (inputEl) => {
         this._toggleButtonState(inputList);
       });
     });
-  
+  }
 
-  enableValidation() 
+  enableValidation() {
      this._formElement.addEventListener("submit", (e) => {
        e.preventDefault();
      });
@@ -86,6 +84,8 @@ _checkInputValidity = (inputEl) => {
   formRest() {
     this._formElement.reset();
   }
+
+}
 
 
   
@@ -116,4 +116,3 @@ _checkInputValidity = (inputEl) => {
 
 
 
-}

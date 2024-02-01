@@ -31,7 +31,7 @@ const initialCards = [
   },
 ];
 
-const cardData =  {
+const cardData  = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
   name : "Lake Lousie",
@@ -62,8 +62,7 @@ const profileDescriptionInput = document.querySelector(
 );
 const profileEditForm = document.querySelector("#profile-edit-form");
 const cardsWrap = document.querySelector(".cards__list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
+const cardTemplate = document.querySelector("#card-template");
 const addNewCardButton = document.querySelector("#profile-add-button");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardModalCloseButton = addCardModal.querySelector(
@@ -120,7 +119,9 @@ function getCardElement(cardData) {
     openModal(previewImageModal);
   });
 
+  return cardElement;
 }
+
 
 
 /* EVENT HANDLERS */
@@ -135,10 +136,10 @@ function handleProfileEditSubmit(e) {
   closeModal(profileEditModal);
 }
 
-function renderCard(cardData) { 
+function renderCard(cardData) {
+  const card = new Card(cardData, "#card-template");
   const renderNewCard = card.generateCard();
-  const card = new Card(cardData, "#card-template"); 
-  cardsWrap.prepend(renderNewCard); 
+  cardsWrap.prepend(renderNewCard);
 } 
 
 
@@ -148,6 +149,7 @@ function handleAddCardFormSubmit(e) {
   const link = urlInput.value;
   renderCard({ name, link }, cardsWrap);
   e.target.reset();
+  addCardFormElement.reset();
   closeModal(addCardModal);
 }
 
@@ -157,7 +159,6 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal)
-
 });
 
 const closeButtons = document.querySelectorAll(".modal__close");
@@ -166,8 +167,7 @@ closeButtons.forEach((button) => {
   button.addEventListener("click", () => {
     closeModal(modal);
   });
-}
-);
+});
 
 previewImageCloseButton.addEventListener("click", () => {
   closeModal(previewImageModal);
@@ -205,8 +205,7 @@ function closeModalOutside(e) {
   }
 }
 
-initialCards.forEach((cardData) => {
-  const cardElement = renderCard(cardData, cardListEl);
+initialCards.forEach((cardData) => { 
+  const cardElement = renderCard(cardData, cardsWrap);
 });
-
-
+ 
