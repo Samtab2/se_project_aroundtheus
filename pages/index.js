@@ -31,20 +31,6 @@ const initialCards = [
   },
 ];
 
-const cardData  = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  name : "Lake Lousie",
-  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  name : "Bald Mountains",
-  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  name : "Latemar",
-  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  name : "Vanoise National Park",
-  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  name : "Lago di Braies",
-  link : "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-};
 
 
 
@@ -62,7 +48,7 @@ const profileDescriptionInput = document.querySelector(
 );
 const profileEditForm = document.querySelector("#profile-edit-form");
 const cardsWrap = document.querySelector(".cards__list");
-const cardTemplate = document.querySelector("#card-template");
+const cardTemplate = document.querySelector("#card-template").content.firstElementChild;
 const addNewCardButton = document.querySelector("#profile-add-button");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardModalCloseButton = addCardModal.querySelector(
@@ -137,10 +123,21 @@ function handleProfileEditSubmit(e) {
 }
 
 function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template");
-  const renderNewCard = card.generateCard();
-  cardsWrap.prepend(renderNewCard);
+  const cardElement = getCardElement(cardData);
+  cardsWrap.prepend(cardElement);
 } 
+
+function createCard(cardData) {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+ return card.getView();
+}
+
+function handleImageClick(cardData) { 
+  openModal(previewImageModal);
+  previewImage.src = cardData._link;
+  previewImage.alt = cardData._name;
+  previewImageTitle.textContent = cardData._name;
+}
 
 
 function handleAddCardFormSubmit(e) {
@@ -172,6 +169,8 @@ closeButtons.forEach((button) => {
 previewImageCloseButton.addEventListener("click", () => {
   closeModal(previewImageModal);
 });
+
+
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
@@ -206,6 +205,6 @@ function closeModalOutside(e) {
 }
 
 initialCards.forEach((cardData) => { 
-  const cardElement = renderCard(cardData, cardsWrap);
+  renderCard(cardData, cardsWrap);
 });
- 
+
