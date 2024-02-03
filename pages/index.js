@@ -33,9 +33,10 @@ const config = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__error",
+  inputErrorClass: "modal__input-error",
   errorClass: "modal__error_visible",
 };
+
 
 /* PROFILE MODAL */
 

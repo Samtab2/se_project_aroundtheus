@@ -74,7 +74,7 @@
             type="text"
             name="title"
             placeholder="Name"
-            class="modal__form-input"
+            class="modal__input"
             id="profile-title-input"
             maxlength="40"
             minlength="2"
@@ -84,7 +84,7 @@
             type="text"
             name="description"
             placeholder="Description"
-            class="modal__form-input"
+            class="modal__input"
             id="profile-description-input"
             maxlength="200"
             minlength="2"
@@ -104,21 +104,20 @@
           id="add-modal-close-button"
           type="button"></button>
         <p class="modal__heading">New Place</p>
-        <form class="modal__form" id="card-form" novalidate>
+        <form class="modal__form" name="card-form" novalidate>
           <input
             type="text"
-            class="modal__form-input"
+            class="modal__input"
             id="titleInput"
             name="title"
             placeholder="Title"
-            required
             maxlength="30"
             minlength="1"
             required />
           <span class="modal__error" id="titleInput-error"></span>
           <input
             type="url"
-            class="modal__form-input"
+            class="modal__input"
             id="urlInput"
             placeholder="Image URL"
             name="url"
@@ -146,6 +145,6 @@
         <h2 class="modal__image-title"></h2>
       </div>
     </div>
-    <script src="/pages/index.js" defer type="module"></script>
+    <script src="./pages/index.js" defer type="module"></script>
   </body>
 </html>
