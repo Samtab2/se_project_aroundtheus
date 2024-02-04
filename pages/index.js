@@ -175,7 +175,7 @@ const enableValidation = (config) => {
     formValidators[formName] = validator;
     validator.enableValidation();
 
-    validator._toggleButtonState();
+    validator.toggleButtonState();
   });
 };
 
