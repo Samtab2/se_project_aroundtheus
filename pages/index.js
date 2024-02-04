@@ -38,6 +38,7 @@ const config = {
 };
 
 
+
 /* PROFILE MODAL */
 
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -173,6 +174,8 @@ const enableValidation = (config) => {
 
     formValidators[formName] = validator;
     validator.enableValidation();
+
+    validator._toggleButtonState();
   });
 };
 
