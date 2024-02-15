@@ -32,12 +32,6 @@ formList.forEach((form) => {
   formValidators[formName] = Validator;
 });
 
-function handleProfileFormSubmit(e) {
-  e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  closeModal(profileEditModal);
-}
 
 function renderCard(cardData) {
   const cardElement = createCard(cardData);
