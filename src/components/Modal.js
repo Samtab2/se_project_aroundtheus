@@ -1,5 +1,5 @@
 export default class Modal {
-    constructor({ modalSelector }) {
+    constructor(modalSelector) {
         this._modalElement = document.querySelector(modalSelector);
     }
    
@@ -7,14 +7,14 @@ export default class Modal {
      // METHODS ITEMS RENDER
     open() {
         this._modalElement.classList.add("modal_opened");
-        document.addEventListener("keyup", this._handleModalEscape);
+        document.addEventListener("keyup", this._handleEscClose);
     };
 
     // METHODS ITEM ADD 
 
     close = () => {
         this._modalElement.classList.remove("modal_opened");
-        document.removeEventListener("keyup", this._handleModalEscape);
+        document.removeEventListener("keyup", this._handleEscClose);
         
     };
 

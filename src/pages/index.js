@@ -10,12 +10,12 @@ import {
   config,
   profileEditButton,
   profileAddButton,
-  profileTitleInput,
+  profileInputList,
   formList,
   formValidators,
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
-import { validate } from "webpack";
+
 
 // CREATE NEW USER INFO
 const userInfo = new UserInfo({
@@ -26,17 +26,14 @@ const userInfo = new UserInfo({
 // FORM VALIDATOR CREATOR AND ENABLING
 
 formList.forEach((form) => {
-  const Validator = new FormValidator(config, form);
+  const validator = new FormValidator(config, form);
   const formName = form.getAttribute("name");
   validator.enableValidation();
-  formValidators[formName] = Validator;
+  formValidators[formName] = validator;
 });
 
 
-function renderCard(cardData) {
-  const cardElement = createCard(cardData);
-  cardsList.prepend(cardElement);
-}
+
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
@@ -48,7 +45,7 @@ function createCard(cardData) {
 const cardsContainer = new Section(
   {
     items: initialCards,
-    renderer: renderCard,
+    renderer: createCard,
   },
   ".cards__list"
 );
@@ -65,17 +62,17 @@ const profileEditModal = new ModalWithForms(
 
 // CREATE ADD IMAGE 
 const addImageModal = new ModalWithForms(
-  "#add-image-modal",
+  "#add-card-modal",
   handleAddImageFormSubmit,
   config
 );
 
 // PREVIEW IMAGE 
 function handleImageClick(name, link) {
-  previewImage.open({ name, link });
+  previewModal.open({ name, link });
 }
 
-const previewImage = new ModalWithImage(".preview__image-modal");
+const previewModal = new ModalWithImage(".preview__image-modal");
 
 // FUNCTION PROFILE EDIT SUBMIT
  function handleProfileFormSubmit(values) {
@@ -96,8 +93,8 @@ const previewImage = new ModalWithImage(".preview__image-modal");
 
 function fillProfileInputs() {
   const userCurrentInfo = userInfo.getUserInfo();
-  profileTitleList[0].value = userCurrentInfo.name;
-  profileTitleList[1].value = userCurrentInfo.description;
+  profileInputList[0].value = userCurrentInfo.name;
+  profileInputList[1].value = userCurrentInfo.description;
 }
 
 // ADD A CLICK EVENT LISTENER TO THE PROFILE EDIT BUTTON
@@ -119,4 +116,4 @@ profileEditModal.setEventListeners();
 addImageModal.setEventListeners();
 
 // ADD EVENT LISTENERS TO TEHE PREVIEW IMAGE MODAL
-previewImage.setEventListeners();
+previewModal.setEventListeners();
