@@ -72,7 +72,7 @@ function handleImageClick(name, link) {
   previewModal.open({ name, link });
 }
 
-const previewModal = new ModalWithImage(".preview__image-modal");
+const previewModal = new ModalWithImage("#preview__image-modal");
 
 // FUNCTION PROFILE EDIT SUBMIT
  function handleProfileFormSubmit(values) {
