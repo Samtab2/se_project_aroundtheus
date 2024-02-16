@@ -35,6 +35,7 @@ formList.forEach((form) => {
 
 // PREVIEW IMAGE 
 function handleImageClick(name, link) {
+  console.log(name, link);
   previewModal.open({ name, link });
 }
 
@@ -89,7 +90,8 @@ const addImageModal = new ModalWithForms(
  // FUNCTION ADD IMAGE SUBMIT
  const addCardFormValidator = formValidators["add-card-form"];
  function handleAddImageFormSubmit(values) {
-   cardsContainer.addItem(createCard(values));
+   const cardElement = createCard(values); 
+    cardsContainer.addItem(cardElement);
    if (addCardFormValidator) {
      addCardFormValidator.resetForm();
    }
@@ -125,7 +127,7 @@ profileEditModal.setEventListeners();
 // ADD A CLICK EVENT LISTENER TO THE ADD IMAGE MODAL
 addImageModal.setEventListeners();
 
-// ADD EVENT LISTENERS TO TEHE PREVIEW IMAGE MODAL
+// ADD EVENT LISTENERS TO THE PREVIEW IMAGE MODAL
 previewModal.setEventListeners();
 
-console.log();
+
