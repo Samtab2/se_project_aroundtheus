@@ -33,25 +33,36 @@ formList.forEach((form) => {
 });
 
 
-
-
-function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  return card.getCard();
+// PREVIEW IMAGE 
+function handleImageClick(name, link) {
+  previewModal.open({ name, link });
 }
+
+const previewModal = new ModalWithImage("#preview__image-modal");
+
 
 // CREATE CARDS CONTAINER
 
 const cardsContainer = new Section(
   {
     items: initialCards,
-    renderer: createCard,
+    renderer: function (cardData) {
+      const cardElement = createCard(cardData);
+      cardsContainer.addItem(cardElement);
+    },
   },
   ".cards__list"
 );
 
 // CALL RENDER FUNCTION
 cardsContainer.renderItems();
+
+// CREATE CARD
+function createCard(cardData) {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  return card.getCard();
+}
+
 
 // CREATE PROFILE EDIT MODAL
 const profileEditModal = new ModalWithForms(
@@ -67,12 +78,7 @@ const addImageModal = new ModalWithForms(
   config
 );
 
-// PREVIEW IMAGE 
-function handleImageClick(name, link) {
-  previewModal.open({ name, link });
-}
 
-const previewModal = new ModalWithImage("#preview__image-modal");
 
 // FUNCTION PROFILE EDIT SUBMIT
  function handleProfileFormSubmit(values) {
