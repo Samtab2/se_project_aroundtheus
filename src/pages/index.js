@@ -81,11 +81,12 @@ const previewModal = new ModalWithImage("#preview__image-modal");
  }
 
  // FUNCTION ADD IMAGE SUBMIT
+ const addCardFormValidator = formValidators["add-card-form"];
  function handleAddImageFormSubmit(values) {
-   const newCard = createCard(values);
-   cardsContainer.addItem(newCard);
-   formValidators.addCardForm.resetForm();
-   formValidators.addCardForm.disableSubmit();
+   cardsContainer.addItem(createCard(values));
+   if (addCardFormValidator) {
+     addCardFormValidator.resetForm();
+   }
    addImageModal.close();
  }
 
@@ -98,11 +99,14 @@ function fillProfileInputs() {
 }
 
 // ADD A CLICK EVENT LISTENER TO THE PROFILE EDIT BUTTON
+const profileFormValidator = formValidators["profile-form"];
 profileEditButton.addEventListener("click", () => {
   fillProfileInputs();
-  formValidators.profileForm.checkValidaity();
+  if (profileFormValidator) {
+    profileFormValidator.checkValidaity();
+  }
   profileEditModal.open();
-});
+})
 
 // ADD A CLICK EVENT LISTENER TO THE PROFILE ADD BUTTON
 profileAddButton.addEventListener("click", () => {
@@ -117,3 +121,5 @@ addImageModal.setEventListeners();
 
 // ADD EVENT LISTENERS TO TEHE PREVIEW IMAGE MODAL
 previewModal.setEventListeners();
+
+console.log();

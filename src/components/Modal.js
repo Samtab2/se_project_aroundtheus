@@ -1,20 +1,21 @@
 export default class Modal {
     constructor(modalSelector) {
         this._modalElement = document.querySelector(modalSelector);
+        this._handleModalEscape = this._handleModalEscape.bind(this);
     }
    
 
      // METHODS ITEMS RENDER
     open() {
         this._modalElement.classList.add("modal_opened");
-        document.addEventListener("keyup", this._handleEscClose);
+        document.addEventListener("keyup", this._handleModalEscape);
     };
 
     // METHODS ITEM ADD 
 
     close = () => {
         this._modalElement.classList.remove("modal_opened");
-        document.removeEventListener("keyup", this._handleEscClose);
+        document.removeEventListener("keyup", this._handleModalEscape);
         
     };
 
