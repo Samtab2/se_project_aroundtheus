@@ -33,7 +33,6 @@ formList.forEach((form) => {
 
 // PREVIEW IMAGE
 function handleImageClick(name, link) {
-  console.log(name, link);
   previewModal.open({ name, link });
 }
 
