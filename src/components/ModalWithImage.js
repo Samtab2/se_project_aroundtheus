@@ -23,7 +23,5 @@ export default class ModalWithImage extends Modal {
     super.close();
   }
 
-  setEventListeners() {
-    super.setEventListeners();
   }
-}
+
