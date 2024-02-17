@@ -9,9 +9,7 @@ export default class FormValidator {
   }
 
   _showInputError(inputEl) {
-    this._errorMessageEl = this._form.querySelector(
-      `#${inputEl.id}-error`
-    );
+    this._errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
 
     inputEl.classList.add(this._inputErrorClass);
     this._errorMessageEl.textContent = inputEl.validationMessage;
@@ -19,9 +17,7 @@ export default class FormValidator {
   }
 
   _hideInputError(inputEl) {
-    this._errorMessageEl = this._form.querySelector(
-      `#${inputEl.id}-error`
-    );
+    this._errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.remove(this._inputErrorClass);
     this._errorMessageEl.textContent = "";
     this._errorMessageEl.classList.remove(this._errorClass);
@@ -32,7 +28,7 @@ export default class FormValidator {
       return this._showInputError(inputEl);
     }
     this._hideInputError(inputEl);
-  }
+  };
 
   _hasInvalidInput() {
     return !this._inputEls.every((inputEl) => inputEl.validity.valid);
@@ -58,10 +54,7 @@ export default class FormValidator {
 
   _setEventListeners() {
     this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
-    this._submitButton = this._form.querySelector(
-      this._submitButtonSelector
-    );
-
+    this._submitButton = this._form.querySelector(this._submitButtonSelector);
 
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
@@ -87,4 +80,3 @@ export default class FormValidator {
     });
   }
 }
-
