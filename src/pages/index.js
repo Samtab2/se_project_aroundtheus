@@ -97,10 +97,10 @@ const addImageModal = new ModalWithForms(
    const cardElement = createCard(card); 
    cardsContainer.addItem(cardElement); 
    if (addCardFormValidator) { 
-     addCardFormValidator.resetForm(); 
-    } 
-    addImageModal.close(); 
-  } 
+     addCardFormValidator.disableSubmitButton();
+       } 
+  addImageModal.close(); 
+} 
 
 // PROFILE EDIT MODAL FILL INPUTS FUNCTIONS
 
