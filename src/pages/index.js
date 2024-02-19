@@ -5,7 +5,7 @@ import Section from "../components/Section.js";
 import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForms from "../components/ModalWithForms.js";
 
-import {
+import  {
   initialCards,
   config,
   profileEditButton,
@@ -15,6 +15,7 @@ import {
   formValidators,
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
+
 
 // CREATE NEW USER INFO
 const userInfo = new UserInfo({
@@ -33,7 +34,6 @@ formList.forEach((form) => {
 
 // PREVIEW IMAGE
 function handleImageClick(name, link) {
-  console.log(name, link);
   previewModal.open({ name, link });
 }
 
