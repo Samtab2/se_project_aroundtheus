@@ -16,12 +16,5 @@ export default class ModalWithImage extends Modal {
     this._previewImageTitle.textContent = name;
     super.open();
   }
-
-  // ADD FUNCTIONALITY TO CLOSE
-
-  close() {
-    super.close();
-  }
-
-  }
+}
 

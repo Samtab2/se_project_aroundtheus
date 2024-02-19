@@ -18,6 +18,12 @@ export default class ModalWithForms extends Modal {
     return inputValues;
   }
 
+setInputValues(data) {
+  this._inputList.forEach((input) => {
+    input.value = data[input.name];
+  });
+}
+
   // ADDS FUNCTIONALITY TO THE SETEVENTLISTENERS METHOD
 
   setEventListeners() {

@@ -97,7 +97,7 @@ const addImageModal = new ModalWithForms(
    const cardElement = createCard(card); 
    cardsContainer.addItem(cardElement); 
    if (addCardFormValidator) { 
-     addCardFormValidator.disableSubmitButton();
+     addCardFormValidator._disableSubmitButton();
        } 
   addImageModal.close(); 
 } 
