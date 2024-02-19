@@ -94,9 +94,9 @@ function handleAddImageFormSubmit(inputValues, evt) {
   if (evt) {
     evt.target.reset();
   }
-
   addImageModal.close();
 }
+
 
 // ADD A CLICK EVENT LISTENER TO THE PROFILE EDIT BUTTON
 profileEditButton.addEventListener("click", () => {

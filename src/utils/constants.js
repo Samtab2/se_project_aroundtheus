@@ -36,6 +36,7 @@ export const config = {
   errorClass: "modal__error_visible",
 };
 
+
 // CREATE PROFILE BUTTONS ELEMENTS
 
 const profile = document.querySelector(".profile");
@@ -57,3 +58,6 @@ export const formList = Array.from(
 // EMPTY THE FORMS
 
 export const formValidators = {};
+
+
+
