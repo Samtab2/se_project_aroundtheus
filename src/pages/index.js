@@ -93,22 +93,12 @@ function handleAddImageFormSubmit(inputValues) {
   addCardFormValidator._disableSubmitButton();
   addImageModal.close();
 }
-console.log(formValidators);
-// PROFILE EDIT MODAL FILL INPUTS FUNCTIONS
 
-function fillProfileInputs() {
+// ADD A CLICK EVENT LISTENER TO THE PROFILE EDIT BUTTON
+profileEditButton.addEventListener("click", () => {
   const userCurrentInfo = userInfo.getUserInfo();
   profileInputList[0].value = userCurrentInfo.name;
   profileInputList[1].value = userCurrentInfo.description;
-}
-
-// ADD A CLICK EVENT LISTENER TO THE PROFILE EDIT BUTTON
-const profileFormValidator = formValidators["profile-form"];
-profileEditButton.addEventListener("click", () => {
-  fillProfileInputs();
-  if (profileFormValidator) {
-    profileFormValidator.checkValidaity();
-  }
   profileEditModal.open();
 });
 

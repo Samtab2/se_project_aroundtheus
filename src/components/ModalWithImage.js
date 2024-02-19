@@ -4,7 +4,7 @@ export default class ModalWithImage extends Modal {
   constructor(modalSelector) {
     super(modalSelector);
     this._previewImage = this._modalElement.querySelector(".modal__image");
-    this._previewImage = this._modalElement.querySelector(
+    this._previewTitle = this._modalElement.querySelector(
       ".modal__image-title"
     );
   }
