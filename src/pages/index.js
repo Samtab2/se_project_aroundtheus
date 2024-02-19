@@ -16,7 +16,6 @@ import {
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
 
-
 // CREATE NEW USER INFO
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
@@ -32,15 +31,13 @@ formList.forEach((form) => {
   formValidators[formName] = validator;
 });
 
-
-// PREVIEW IMAGE 
+// PREVIEW IMAGE
 function handleImageClick(name, link) {
   console.log(name, link);
   previewModal.open({ name, link });
 }
 
 const previewModal = new ModalWithImage("#preview__image-modal");
-
 
 // CREATE CARDS CONTAINER
 
@@ -64,7 +61,6 @@ function createCard(cardData) {
   return card.getCard();
 }
 
-
 // CREATE PROFILE EDIT MODAL
 const profileEditModal = new ModalWithForms(
   "#profile-edit-modal",
@@ -72,36 +68,32 @@ const profileEditModal = new ModalWithForms(
   config
 );
 
-// CREATE ADD IMAGE 
+// CREATE ADD IMAGE
 const addImageModal = new ModalWithForms(
   "#add-card-modal",
   handleAddImageFormSubmit,
   config
 );
 
-
-
 // FUNCTION PROFILE EDIT SUBMIT
- function handleProfileFormSubmit(values) {
-   userInfo.setUserInfo(values);
-   profileEditModal.close();
- }
+function handleProfileFormSubmit(values) {
+  userInfo.setUserInfo(values);
+  profileEditModal.close();
+}
 
- // FUNCTION ADD IMAGE SUBMIT
- const addCardFormValidator = formValidators["add-card-form"]; 
- function handleAddImageFormSubmit(inputValues) { 
-   const card = { 
-     name: inputValues.title, 
-     link: inputValues.url, 
-   }; 
-   const cardElement = createCard(card); 
-   cardsContainer.addItem(cardElement); 
-   if (addCardFormValidator) { 
-     addCardFormValidator._disableSubmitButton();
-       } 
-  addImageModal.close(); 
-} 
-
+// FUNCTION ADD IMAGE SUBMIT
+function handleAddImageFormSubmit(inputValues) {
+  const card = {
+    name: inputValues.title,
+    link: inputValues.url,
+  };
+  const cardElement = createCard(card);
+  const addCardFormValidator = formValidators["card-form"];
+  cardsContainer.addItem(cardElement);
+  addCardFormValidator._disableSubmitButton();
+  addImageModal.close();
+}
+console.log(formValidators);
 // PROFILE EDIT MODAL FILL INPUTS FUNCTIONS
 
 function fillProfileInputs() {
@@ -118,7 +110,7 @@ profileEditButton.addEventListener("click", () => {
     profileFormValidator.checkValidaity();
   }
   profileEditModal.open();
-})
+});
 
 // ADD A CLICK EVENT LISTENER TO THE PROFILE ADD BUTTON
 profileAddButton.addEventListener("click", () => {
@@ -133,7 +125,3 @@ addImageModal.setEventListeners();
 
 // ADD EVENT LISTENERS TO TEHE PREVIEW IMAGE MODAL
 previewModal.setEventListeners();
-
-
-
-
