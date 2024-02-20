@@ -86,7 +86,6 @@ export default class FormValidator {
   }
 
   resetForm() {
-    this.resetValidation();
     this._form.reset();
   }
 }
