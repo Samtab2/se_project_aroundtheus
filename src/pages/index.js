@@ -5,7 +5,7 @@ import Section from "../components/Section.js";
 import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForms from "../components/ModalWithForms.js";
 
-import  {
+import {
   initialCards,
   config,
   profileEditButton,
@@ -15,7 +15,6 @@ import  {
   formValidators,
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
-
 
 // CREATE NEW USER INFO
 const userInfo = new UserInfo({
@@ -82,20 +81,20 @@ function handleProfileFormSubmit(values) {
 }
 
 // FUNCTION ADD IMAGE SUBMIT
-const cardForm = document.querySelector("card-form")
 function handleAddImageFormSubmit(inputValues) {
   const card = {
     name: inputValues.title,
+
     link: inputValues.url,
   };
   const cardElement = createCard(card);
   const addCardFormValidator = formValidators["card-form"];
   cardsContainer.addItem(cardElement);
   addCardFormValidator.disableSubmitButton();
-  if (cardForm) {
-    cardForm.reset();   
-  }
-  
+  const titleInput = document.querySelector("#titleInput");
+  const urlInput = document.querySelector("#urlInput");
+  titleInput.value = "";
+  urlInput.value = "";
   addImageModal.close();
 }
 
