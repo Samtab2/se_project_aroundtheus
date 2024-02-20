@@ -82,7 +82,8 @@ function handleProfileFormSubmit(values) {
 }
 
 // FUNCTION ADD IMAGE SUBMIT
-function handleAddImageFormSubmit(inputValues, evt) {
+const cardForm = document.querySelector("card-form")
+function handleAddImageFormSubmit(inputValues) {
   const card = {
     name: inputValues.title,
     link: inputValues.url,
@@ -91,9 +92,10 @@ function handleAddImageFormSubmit(inputValues, evt) {
   const addCardFormValidator = formValidators["card-form"];
   cardsContainer.addItem(cardElement);
   addCardFormValidator.disableSubmitButton();
-  if (evt) {
-    evt.target.reset();
+  if (cardForm) {
+    cardForm.reset();   
   }
+  
   addImageModal.close();
 }
 

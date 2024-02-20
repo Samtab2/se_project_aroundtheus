@@ -31,7 +31,7 @@ setInputValues(data) {
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
       const inputValues = this._getInputValues();
-      this._formSubmit(inputValues);
+      this._formSubmit(inputValues, e);
     });
   }
 }
