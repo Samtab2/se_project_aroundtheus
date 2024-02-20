@@ -53,6 +53,7 @@ export default class FormValidator {
     }
   }
 
+
   _setEventListeners() {
     this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
 
@@ -82,5 +83,10 @@ export default class FormValidator {
 
   disableSubmitButton() {
     this._disableSubmitButton();
+  }
+
+  resetForm() {
+    this.resetValidation();
+    this._form.reset();
   }
 }

@@ -91,10 +91,7 @@ function handleAddImageFormSubmit(inputValues) {
   const addCardFormValidator = formValidators["card-form"];
   cardsContainer.addItem(cardElement);
   addCardFormValidator.disableSubmitButton();
-  const titleInput = document.querySelector("#titleInput");
-  const urlInput = document.querySelector("#urlInput");
-  titleInput.value = "";
-  urlInput.value = "";
+  addCardFormValidator.resetForm();
   addImageModal.close();
 }
 
