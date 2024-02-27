@@ -78,6 +78,10 @@
   border-radius: 50%;
 }
 
+.profile__image:hover .profile__edit-button {
+  opacity: 1;
+}
+
 @media screen and (max-width: 760px) {
   .profile {
     flex-direction: column;

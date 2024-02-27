@@ -60,4 +60,12 @@ export const formList = Array.from(
 export const formValidators = {};
 
 
+export const options = {
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "739decfe-71be-4d0d-8961-a71a0f6cba52",
+    "Content-Type": "application/json",
+  },
+};
+
 

@@ -53,7 +53,6 @@ export default class FormValidator {
     }
   }
 
-
   _setEventListeners() {
     this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
 
