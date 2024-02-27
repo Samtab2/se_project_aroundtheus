@@ -50,4 +50,3 @@ export default class ModalWithForms extends Modal {
   }
 }
 
-console.log(textContent);
