@@ -172,6 +172,7 @@ function handleLikeClick(card) {
 // AVATAR EDIT SUBMIT
 function handleAvatarFormSubmit(Values) {
   avatarEditModal.renderSaving(true);
+  debugger 
   api
    .changeAvatar(Values)
     .then((res) => {
