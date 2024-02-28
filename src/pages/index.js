@@ -93,12 +93,15 @@ const addImageModal = new ModalWithForms(
 const avatarEditModal = new ModalWithForms(
   "#modal-change-picture",
   handleAvatarFormSubmit,
-  config
+  config,
 );
+
+const avatarEditButton = document.querySelector("#avatar-edit-button");
 
 // CREATE A MODALWITHFORM FOR DELETE CONFIRMATION
 const deleteConfirmationModal = new ModalWithForms(
   "#delete-confirmation-modal",
+  handleDeleteClick,
   config
 );
 
@@ -172,7 +175,6 @@ function handleLikeClick(card) {
 // AVATAR EDIT SUBMIT
 function handleAvatarFormSubmit(Values) {
   avatarEditModal.renderSaving(true);
-  debugger 
   api
    .changeAvatar(Values)
     .then((res) => {
@@ -218,6 +220,8 @@ deleteConfirmationModal.setEventListeners();
 avatarEditButton.addEventListener("click", () => {
   avatarEditModal.open();
 });
+
+
 
 
 

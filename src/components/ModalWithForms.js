@@ -9,8 +9,10 @@ export default class ModalWithForms extends Modal {
     super(modalSelector);
     this._form = this._modalElement.querySelector(formSelector);
     this._formSubmit = formSubmit;
-    this._inputList = Array.from(this._form.querySelectorAll(".modal__input"));
+    this._inputList = Array.from(this._form ? this._form.querySelectorAll(".modal__input") : []);
     this._button = this._modalElement.querySelector(submitButtonSelector);
+    this._button.addEventListener('click', this._handleSubmit.bind(this));
+    this.setEventListeners();
   }
 
   // METHOD FOR CHANGING THE BUTTON TEXT
@@ -37,10 +39,23 @@ export default class ModalWithForms extends Modal {
     });
   }
 
+  _handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(this._form);
+    const inputValues = {};
+
+    this._inputList.forEach((input) => {
+      inputValues[input.name] = formData.get(input.name);
+    });
+
+    this._formSubmit.formSubmit(inputValues);
+  }
+
   // ADDS FUNCTIONALITY TO THE SETEVENTLISTENERS METHOD
 
   setEventListeners() {
     super.setEventListeners();
+    if (this._form) {
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
       const inputValues = this._getInputValues();
@@ -48,4 +63,4 @@ export default class ModalWithForms extends Modal {
     });
   }
 }
-
+}
