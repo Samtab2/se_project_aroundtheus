@@ -1,9 +1,18 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
+  constructor( data, cardSelector, handleImageClick, handleLikeClick, handleDeleteClick) {
     this._handleImageClick = handleImageClick;
     this._cardSelector = cardSelector;
-    this._link = link;
-    this._name = name;
+    this._link = data.link;
+    this._name = data.name;
+    this._handleLikeClick = handleLikeClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._id = data.id;
+    this.isLiked = data.isLiked; 
+  }
+
+  // METHOD FOR CARD ELEMENT OUT OF THE TEMPLATE
+  getId() {
+    return this._id;
   }
 
   _setEventListeners() {
@@ -31,6 +40,24 @@ export default class Card {
     this._cardElement.remove();
     this._cardElement = null;
   }
+  
+  // METHODS FOR CARD ELEMENT IN THE TEMPLATE
+  toggleLikeCard(isLiked) {
+    this.isLiked = isLiked;
+    this.renderLikeCard();
+  }
+
+  renderLikeCard() {
+    this.isLiked
+    ? this._likeButton.classList.toggle("cards__like-button_active")
+    : this._likeButton.classList.toggle("cards__like-button_active");
+  }
+
+  deleteCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
+  }
+
 
   getCard() {
     this._cardElement = document

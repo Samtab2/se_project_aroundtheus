@@ -10,7 +10,6 @@ export default class ModalWithForms extends Modal {
     this._form = this._modalElement.querySelector(formSelector);
     this._formSubmit = formSubmit;
     this._inputList = Array.from(this._form.querySelectorAll(".modal__input"));
-    this._originalButtonText = this._button.textContent;
     this._button = this._modalElement.querySelector(submitButtonSelector);
   }
 

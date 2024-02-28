@@ -61,10 +61,10 @@ export const formValidators = {};
 
 
 export const options = {
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "739decfe-71be-4d0d-8961-a71a0f6cba52",
-    "Content-Type": "application/json",
+  baseUrl:  "https://around-api.en.tripleten-services.com/v1/users/me",
+     headers: {
+       authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+       "Content-Type": "application/json",
   },
 };
 

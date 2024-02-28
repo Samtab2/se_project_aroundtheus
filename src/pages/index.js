@@ -213,6 +213,11 @@ avatarEditModal.setEventListeners();
 // ADD EVENT LISTENERS TO THE DELETE CONFIRMATION MODAL
 deleteConfirmationModal.setEventListeners();
 
+// ADD EVENT LISTENERS TO THE AVATAR EDIT BUTTON
+avatarEditButton.addEventListener("click", () => {
+  avatarEditModal.open();
+});
+
 
 
 
