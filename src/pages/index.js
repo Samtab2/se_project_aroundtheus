@@ -4,7 +4,7 @@ import "../pages/index.css";
 import Section from "../components/Section.js";
 import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForms from "../components/ModalWithForms.js";
-import Api from '../components/Api.js';
+import Api from "../components/Api.js";
 
 import {
   config,
@@ -12,8 +12,7 @@ import {
   profileAddButton,
   profileInputList,
   formList,
-  formValidators,
-  options,
+  formValidators
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
 
@@ -24,18 +23,24 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__image",
 });
 
-const api = new Api(options);
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    "Content-Type": "application/json",
+    authorization: "084a20b4-0f85-402b-8b18-0788371f1b7e"
+  }
+})
 
 api
-.getUserInfo()
-.then((res) => {
-  userInfo.setUserInfo({
-    name: res.name,
-    description: res.about,
-  });
-  userInfo.setUserAvatar(res.avatar);
-})
-.catch(console.error);
+  .getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo({
+      name: res.name,
+      description: res.about,
+    });
+    userInfo.setUserAvatar(res.avatar);
+  })
+  .catch(console.error);
 
 let cardsContainer;
 
@@ -56,22 +61,29 @@ function handleImageClick(name, link) {
 const previewModal = new ModalWithImage("#preview__image-modal");
 
 // CREATE CARDS CONTAINER
-api.getInitialCards().then((res) => {
-  
-const cardsContainer = new Section(
-  { items: res, renderer: createCard },
-  ".cards__list"
-);
+api
+  .getInitialCards()
+  .then((res) => {
+    const cardsContainer = new Section(
+      { items: res, renderer: createCard },
+      ".cards__list"
+    );
 
-// CALL RENDER FUNCTION
-cardsContainer.renderItems();
-})
+    // CALL RENDER FUNCTION
+    cardsContainer.renderItems();
+  })
 
-.catch(console.error);
+  .catch(console.error);
 
 // CREATE CARD
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick, handleDeleteClick, handleLikeClick);
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleDeleteClick,
+    handleLikeClick
+  );
   return card.getCard();
 }
 
@@ -93,7 +105,7 @@ const addImageModal = new ModalWithForms(
 const avatarEditModal = new ModalWithForms(
   "#modal-change-picture",
   handleAvatarFormSubmit,
-  config,
+  config
 );
 
 const avatarEditButton = document.querySelector("#avatar-edit-button");
@@ -109,20 +121,21 @@ const deleteConfirmationModal = new ModalWithForms(
 function handleProfileFormSubmit(data) {
   profileEditModal.renderingSaving(true);
   api
-    .editProfile(data)
+    .editUserInfo({
+      name: data.name,
+      description: data.description,
+    })
     .then((res) => {
       userInfo.setUserInfo({
         name: res.name,
-        description: res.about,
+        description: res.description,
       });
       profileEditModal.close();
     })
     .catch(console.error)
     .finally(() => {
       profileEditModal.renderingSaving(false);
-    })
-
-
+    });
 
   userInfo.setUserInfo(data);
   profileEditModal.close();
@@ -143,7 +156,7 @@ function handleAddImageFormSubmit(data) {
     .catch(console.error)
     .finally(() => {
       addImageModal.renderingSaving(false);
-    })
+    });
 }
 
 // DELETE CARD FUNCTION
@@ -152,31 +165,31 @@ function handleDeleteClick(card) {
   deleteConfirmationModal.setCallback(() => {
     deleteConfirmationModal.renderingSaving(true);
     api
-    .deleteCard(card.getId())
-    .then(() => {
-      card.deleteCard();
-      deleteConfirmationModal.close();
-    })
-    .catch(console.error)
-    .finally(() => {
-      deleteConfirmationModal.renderingSaving(false);
-    })
-  })
+      .deleteCard(card.getId())
+      .then(() => {
+        card.deleteCard();
+        deleteConfirmationModal.close();
+      })
+      .catch(console.error)
+      .finally(() => {
+        deleteConfirmationModal.renderingSaving(false);
+      });
+  });
 }
 
 // LIKE CLICK FUNCTION
 function handleLikeClick(card) {
   api
-  .likeCard(card.getId(), card.isLiked)
-  .then((res) => card.toggleLikeCard(res.isLiked))
-  .catch(console.error);
+    .likeCard(card.getId(), card.isLiked)
+    .then((res) => card.toggleLikeCard(res.isLiked))
+    .catch(console.error);
 }
 
 // AVATAR EDIT SUBMIT
 function handleAvatarFormSubmit(Values) {
   avatarEditModal.renderingSaving(true);
   api
-   .changeAvatar(Values)
+    .changeAvatar(Values)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
       avatarEditModal.close();
@@ -194,7 +207,6 @@ profileEditButton.addEventListener("click", () => {
   profileInputList[1].value = userCurrentInfo.description;
   profileEditModal.open();
 });
-
 
 // ADD A CLICK EVENT LISTENER TO THE PROFILE ADD BUTTON
 profileAddButton.addEventListener("click", () => {
@@ -220,13 +232,3 @@ deleteConfirmationModal.setEventListeners();
 avatarEditButton.addEventListener("click", () => {
   avatarEditModal.open();
 });
-
-
-
-
-
-
-
-
-
-

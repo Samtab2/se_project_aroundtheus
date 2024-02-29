@@ -37,6 +37,7 @@ export const config = {
 };
 
 
+
 // CREATE PROFILE BUTTONS ELEMENTS
 
 const profile = document.querySelector(".profile");
@@ -59,13 +60,5 @@ export const formList = Array.from(
 
 export const formValidators = {};
 
-
-export const options = {
-  baseUrl:  "https://around-api.en.tripleten-services.com/v1",
-     headers: {
-       authorization: "084a20b4-0f85-402b-8b18-0788371f1b7e",
-       "Content-Type": "application/json",
-  },
-};
 
 
