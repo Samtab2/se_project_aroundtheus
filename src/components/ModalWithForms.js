@@ -15,7 +15,7 @@ export default class ModalWithForms extends Modal {
 
   // METHOD FOR CHANGING THE BUTTON TEXT
 
-  renderingSaving() {
+  renderingSaving(isSaving) {
     isSaving
       ? (this._button.textContent = "Saving...")
       : (this._button.textContent = this._originalButtonText);
@@ -44,8 +44,8 @@ export default class ModalWithForms extends Modal {
     if (this._form) {
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const inputValues = this._getInputValues();
-      this._formSubmit(inputValues, e);
+      const data = this._getInputValues();
+      this._formSubmit(data, e);
     });
   }
 }

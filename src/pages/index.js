@@ -106,10 +106,10 @@ const deleteConfirmationModal = new ModalWithForms(
 );
 
 // FUNCTION PROFILE EDIT SUBMIT
-function handleProfileFormSubmit(values) {
-  profileEditModal.renderSaving(true);
+function handleProfileFormSubmit(data) {
+  profileEditModal.renderingSaving(true);
   api
-    .editProfile(values)
+    .editProfile(data)
     .then((res) => {
       userInfo.setUserInfo({
         name: res.name,
@@ -119,20 +119,20 @@ function handleProfileFormSubmit(values) {
     })
     .catch(console.error)
     .finally(() => {
-      profileEditModal.renderSaving(false);
+      profileEditModal.renderingSaving(false);
     })
 
 
 
-  userInfo.setUserInfo(values);
+  userInfo.setUserInfo(data);
   profileEditModal.close();
 }
 
 // FUNCTION ADD IMAGE SUBMIT
-function handleAddImageFormSubmit(inputValues) {
-  addImageModal.renderSaving(true);
+function handleAddImageFormSubmit(data) {
+  addImageModal.renderingSaving(true);
   api
-    .addCard(inputValues)
+    .addCard(data)
     .then((res) => {
       const cardElement = createCard(res);
       cardsContainer.addItem(cardElement);
@@ -142,7 +142,7 @@ function handleAddImageFormSubmit(inputValues) {
     })
     .catch(console.error)
     .finally(() => {
-      addImageModal.renderSaving(false);
+      addImageModal.renderingSaving(false);
     })
 }
 
@@ -150,7 +150,7 @@ function handleAddImageFormSubmit(inputValues) {
 function handleDeleteClick(card) {
   deleteConfirmationModal.open();
   deleteConfirmationModal.setCallback(() => {
-    deleteConfirmationModal.renderSaving(true);
+    deleteConfirmationModal.renderingSaving(true);
     api
     .deleteCard(card.getId())
     .then(() => {
@@ -159,7 +159,7 @@ function handleDeleteClick(card) {
     })
     .catch(console.error)
     .finally(() => {
-      deleteConfirmationModal.renderSaving(false);
+      deleteConfirmationModal.renderingSaving(false);
     })
   })
 }
@@ -174,7 +174,7 @@ function handleLikeClick(card) {
 
 // AVATAR EDIT SUBMIT
 function handleAvatarFormSubmit(Values) {
-  avatarEditModal.renderSaving(true);
+  avatarEditModal.renderingSaving(true);
   api
    .changeAvatar(Values)
     .then((res) => {
@@ -183,7 +183,7 @@ function handleAvatarFormSubmit(Values) {
     })
     .catch(console.error)
     .finally(() => {
-      avatarEditModal.renderSaving(false);
+      avatarEditModal.renderingSaving(false);
     });
 }
 
