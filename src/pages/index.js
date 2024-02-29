@@ -16,6 +16,7 @@ import {
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
 
+
 // CREATE NEW USER INFO
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
@@ -118,13 +119,10 @@ const deleteConfirmationModal = new ModalWithForms(
 );
 
 // FUNCTION PROFILE EDIT SUBMIT
-function handleProfileFormSubmit(data) {
+function handleProfileFormSubmit(inputValues) {
   profileEditModal.renderingSaving(true);
   api
-    .editUserInfo({
-      name: data.name,
-      description: data.description,
-    })
+    .editUserInfo(inputValues)
     .then((res) => {
       userInfo.setUserInfo({
         name: res.name,
@@ -136,18 +134,23 @@ function handleProfileFormSubmit(data) {
     .finally(() => {
       profileEditModal.renderingSaving(false);
     });
-
-  userInfo.setUserInfo(data);
   profileEditModal.close();
 }
 
+
+
 // FUNCTION ADD IMAGE SUBMIT
-function handleAddImageFormSubmit(data) {
+function handleAddImageFormSubmit(inputValues) {
   addImageModal.renderingSaving(true);
+  const newData = {
+    name: inputValues.title,
+    link: inputValues.url,
+  }
   api
-    .addCard(data)
+    .addCard(newData)
     .then((res) => {
       const cardElement = createCard(res);
+      console.log(cardElement);
       cardsContainer.addItem(cardElement);
       addImageModal.close();
       formValidators.disableSubmitButton();
@@ -158,6 +161,8 @@ function handleAddImageFormSubmit(data) {
       addImageModal.renderingSaving(false);
     });
 }
+
+
 
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
@@ -189,7 +194,7 @@ function handleLikeClick(card) {
 function handleAvatarFormSubmit(Values) {
   avatarEditModal.renderingSaving(true);
   api
-    .changeAvatar(Values)
+    .changeAvatar(Values.link)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
       avatarEditModal.close();
@@ -232,3 +237,5 @@ deleteConfirmationModal.setEventListeners();
 avatarEditButton.addEventListener("click", () => {
   avatarEditModal.open();
 });
+
+

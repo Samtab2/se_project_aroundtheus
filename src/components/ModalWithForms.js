@@ -31,9 +31,10 @@ export default class ModalWithForms extends Modal {
     return inputValues;
   }
 
-  setInputValues(data) {
+  setInputValues(inputValues) {
     this._inputList.forEach((input) => {
       input.value = data[input.name];
+      this._formSubmit(inputValues, e);
     });
   }
 
@@ -44,8 +45,8 @@ export default class ModalWithForms extends Modal {
     if (this._form) {
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const data = this._getInputValues();
-      this._formSubmit(data, e);
+      const inputValues = this._getInputValues();
+      this._formSubmit(inputValues, e);
     });
   }
 }

@@ -7,12 +7,13 @@ export default class Api {
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
-    }
+    } else {
     return Promise.reject(`Error: ${res.status}`);
   }
+  }
 
-  _request(url, options) {
-    return fetch(url, options).then(this._checkResponse);
+  async _request(url, options) {
+    return fetch(url, options).then(this._checkResponse);  
   }
 
   getUserInfo() {
@@ -37,6 +38,7 @@ export default class Api {
       }),
     });
   }
+
 
   addCard({ name, link }) {
     return this._request(`${this._baseUrl}/cards`, {
@@ -63,15 +65,16 @@ export default class Api {
     });
   }
 
-  changeAvatar({ link }) {
+  changeAvatar(Values) {
     return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: link,
+        avatar: Values.link,
       }),
     });
   }
 } 
+
 
 
