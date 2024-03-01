@@ -11,6 +11,7 @@ export default class ModalWithForms extends Modal {
     this._formSubmit = formSubmit;
     this._inputList = Array.from(this._form ? this._form.querySelectorAll(".modal__input") : []);
     this._button = this._modalElement.querySelector(submitButtonSelector);
+    this._originalButtonText = this._button.textContent;
   }
 
   // METHOD FOR CHANGING THE BUTTON TEXT
@@ -31,10 +32,9 @@ export default class ModalWithForms extends Modal {
     return inputValues;
   }
 
-  setInputValues(inputValues) {
+  setInputValues(data) {
     this._inputList.forEach((input) => {
       input.value = data[input.name];
-      this._formSubmit(inputValues, e);
     });
   }
 

@@ -118,7 +118,7 @@ const avatarEditModal = new ModalWithForms(
 const avatarEditButton = document.querySelector("#avatar-edit-button");
 
 // CREATE A MODALWITHFORM FOR DELETE CONFIRMATION
-const deleteConfirmationModal = new ModalWithForms(
+const confirmationModal = new ModalWithForms(
   "#delete-confirmation-modal",
   handleDeleteClick,
   config
@@ -165,21 +165,23 @@ function handleAddImageFormSubmit(inputValues) {
 
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
-  deleteConfirmationModal.open();
-  deleteConfirmationModal.setCallback(() => {
-    deleteConfirmationModal.renderingSaving(true);
+  confirmationModal.open();
+  confirmationModal.setSubmitHandler(() => {
+    confirmationModal.renderingSaving(true);
     api
       .deleteCard(card.getId())
       .then(() => {
         card.deleteCard();
-        deleteConfirmationModal.close();
+        confirmationModal.close();
       })
       .catch(console.error)
       .finally(() => {
-        deleteConfirmationModal.renderingSaving(false);
+        confirmationModal.renderingSaving(false);
       });
   });
 }
+
+
 
 
 // LIKE CLICK FUNCTION
@@ -234,7 +236,7 @@ previewModal.setEventListeners();
 avatarEditModal.setEventListeners();
 
 // ADD EVENT LISTENERS TO THE DELETE CONFIRMATION MODAL
-deleteConfirmationModal.setEventListeners();
+confirmationModal.setEventListeners();
 
 // ADD EVENT LISTENERS TO THE AVATAR EDIT BUTTON
 avatarEditButton.addEventListener("click", () => {

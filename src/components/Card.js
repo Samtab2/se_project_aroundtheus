@@ -12,7 +12,7 @@ export default class Card {
     this._name = data.name;
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteClick = handleDeleteClick;
-    this._id = data.id;
+    this._id = data._id;
     this.isLiked = data.isLiked;
   }
 
@@ -23,7 +23,7 @@ export default class Card {
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      this._handleLikeIcon();
+      this._handleLikeClick(this);
     });
 
     this._trashButton.addEventListener("click", () => {
@@ -33,10 +33,6 @@ export default class Card {
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick(this._name, this._link);
     });
-  }
-
-  _handleLikeIcon() {
-    this._handleLikeClick(this); // Pass the Card instance as an argument
   }
 
   // METHODS FOR CARD ELEMENT IN THE TEMPLATE
@@ -72,6 +68,7 @@ export default class Card {
     this._cardTitleEl.textContent = this._name;
 
     this._setEventListeners();
+    this.renderLikeCard();
 
     return this._cardElement;
   }
