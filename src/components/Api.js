@@ -28,12 +28,12 @@ export default class Api {
     });
   }
 
-  editUserInfo({ name, description }) {
+  editUserInfo({ title, description }) {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: name,
+        name: title,
         about: description,
       }),
     });

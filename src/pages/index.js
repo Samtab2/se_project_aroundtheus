@@ -65,7 +65,7 @@ const previewModal = new ModalWithImage("#preview__image-modal");
 api
   .getInitialCards()
   .then((res) => {
-    const cardsContainer = new Section(
+    cardsContainer = new Section(
       { items: res, renderer: createCard },
       ".cards__list"
     );
@@ -126,7 +126,7 @@ function handleProfileFormSubmit(inputValues) {
     .then((res) => {
       userInfo.setUserInfo({
         name: res.name,
-        description: res.description,
+        description: res.about,
       });
       profileEditModal.close();
     })
@@ -150,18 +150,14 @@ function handleAddImageFormSubmit(inputValues) {
     .addCard(newData)
     .then((res) => {
       const cardElement = createCard(res);
-      console.log(cardElement);
       cardsContainer.addItem(cardElement);
       addImageModal.close();
-      formValidators.disableSubmitButton();
-      formValidators.resetForm();
     })
     .catch(console.error)
     .finally(() => {
       addImageModal.renderingSaving(false);
     });
 }
-
 
 
 // DELETE CARD FUNCTION
@@ -193,8 +189,11 @@ function handleLikeClick(card) {
 // AVATAR EDIT SUBMIT
 function handleAvatarFormSubmit(Values) {
   avatarEditModal.renderingSaving(true);
+  const newData = {
+    link: Values 
+  }
   api
-    .changeAvatar(Values.link)
+    .changeAvatar(newData)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
       avatarEditModal.close();
