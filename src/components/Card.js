@@ -54,20 +54,8 @@ export default class Card {
   }
 
   deleteCard() {
-    const api = new Api({
-      baseUrl: "https://around-api.en.tripleten-services.com/v1",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: "084a20b4-0f85-402b-8b18-0788371f1b7e",
-      },
-    });
-    api.deleteCard(this._cardData.id)
-    .then(() => {
-      this._handleDeleteIcon();
-    })
     this._cardElement.remove();
     this._cardElement = null;
-  
   }
 
 

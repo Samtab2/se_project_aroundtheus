@@ -54,8 +54,8 @@ formList.forEach((form) => {
 });
 
 // PREVIEW IMAGE
-function handleImageClick(title, url) {
-  previewModal.open({ title, url });
+function handleImageClick(name, link) {
+  previewModal.open({ name, link });
 }
 
 const previewModal = new ModalWithImage("#preview__image-modal");
@@ -180,6 +180,7 @@ function handleDeleteClick(card) {
       });
   });
 }
+
 
 // LIKE CLICK FUNCTION
 function handleLikeClick(card) {
