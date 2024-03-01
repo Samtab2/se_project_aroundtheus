@@ -1,5 +1,11 @@
 export default class Card {
-  constructor( data, cardSelector, handleImageClick, handleLikeClick, handleDeleteClick) {
+  constructor(
+    data,
+    cardSelector,
+    handleImageClick,
+    handleDeleteClick,
+    handleLikeClick
+  ) {
     this._handleImageClick = handleImageClick;
     this._cardSelector = cardSelector;
     this._link = data.link;
@@ -7,7 +13,7 @@ export default class Card {
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteClick = handleDeleteClick;
     this._id = data.id;
-    this.isLiked = data.isLiked; 
+    this.isLiked = data.isLiked;
   }
 
   // METHOD FOR CARD ELEMENT OUT OF THE TEMPLATE
@@ -16,15 +22,13 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._likeButton
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-      });
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeIcon();
+    });
 
-    this._trashButton
-      .addEventListener("click", () => {
-        this._handleDeleteIcon();
-      });
+    this._trashButton.addEventListener("click", () => {
+      this._handleDeleteClick(this); 
+    });
 
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick(this._name, this._link);
@@ -32,15 +36,9 @@ export default class Card {
   }
 
   _handleLikeIcon() {
-    this._likeButton
-      .classList.toggle("cards__like-button_active");
+    this._handleLikeClick(this); // Pass the Card instance as an argument
   }
 
-  _handleDeleteIcon() {
-    this._cardElement.remove();
-    this._cardElement = null;
-  }
-  
   // METHODS FOR CARD ELEMENT IN THE TEMPLATE
   toggleLikeCard(isLiked) {
     this.isLiked = isLiked;
@@ -49,17 +47,14 @@ export default class Card {
 
   renderLikeCard() {
     this.isLiked
-    ? this._likeButton.classList.toggle("cards__like-button_active")
-    : this._likeButton.classList.toggle("cards__like-button_active");
+      ? this._likeButton.classList.toggle("cards__like-button_active")
+      : this._likeButton.classList.toggle("cards__like-button_active");
   }
 
   deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
-
-
-
 
   getCard() {
     this._cardElement = document
@@ -77,7 +72,7 @@ export default class Card {
     this._cardTitleEl.textContent = this._name;
 
     this._setEventListeners();
-    
+
     return this._cardElement;
   }
 }
