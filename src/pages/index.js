@@ -12,10 +12,9 @@ import {
   profileAddButton,
   profileInputList,
   formList,
-  formValidators
+  formValidators,
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
-
 
 // CREATE NEW USER INFO
 const userInfo = new UserInfo({
@@ -28,9 +27,9 @@ const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
     "Content-Type": "application/json",
-    authorization: "084a20b4-0f85-402b-8b18-0788371f1b7e"
-  }
-})
+    authorization: "084a20b4-0f85-402b-8b18-0788371f1b7e",
+  },
+});
 
 api
   .getUserInfo()
@@ -55,8 +54,8 @@ formList.forEach((form) => {
 });
 
 // PREVIEW IMAGE
-function handleImageClick(name, link) {
-  previewModal.open({ name, link });
+function handleImageClick(title, url) {
+  previewModal.open({ title, url });
 }
 
 const previewModal = new ModalWithImage("#preview__image-modal");
@@ -66,7 +65,14 @@ api
   .getInitialCards()
   .then((res) => {
     cardsContainer = new Section(
-      { items: res, renderer: createCard },
+      {
+        items: res,
+        renderer: (cardData) => {
+          createCard(cardData);
+          const cardElement = createCard(cardData);
+          cardsContainer.addItem(cardElement);
+        },
+      },
       ".cards__list"
     );
 
@@ -137,15 +143,13 @@ function handleProfileFormSubmit(inputValues) {
   profileEditModal.close();
 }
 
-
-
 // FUNCTION ADD IMAGE SUBMIT
 function handleAddImageFormSubmit(inputValues) {
   addImageModal.renderingSaving(true);
   const newData = {
     name: inputValues.title,
     link: inputValues.url,
-  }
+  };
   api
     .addCard(newData)
     .then((res) => {
@@ -158,7 +162,6 @@ function handleAddImageFormSubmit(inputValues) {
       addImageModal.renderingSaving(false);
     });
 }
-
 
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
@@ -190,8 +193,8 @@ function handleLikeClick(card) {
 function handleAvatarFormSubmit(Values) {
   avatarEditModal.renderingSaving(true);
   const newData = {
-    link: Values 
-  }
+    link: Values,
+  };
   api
     .changeAvatar(newData)
     .then((res) => {
@@ -236,5 +239,3 @@ deleteConfirmationModal.setEventListeners();
 avatarEditButton.addEventListener("click", () => {
   avatarEditModal.open();
 });
-
-
