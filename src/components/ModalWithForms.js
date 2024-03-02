@@ -38,6 +38,13 @@ export default class ModalWithForms extends Modal {
     });
   }
 
+  setFormValue(name, value) {
+    const input = this._form.querySelector(`[name="${name}"]`);
+    if (input) {
+      input.value = value;
+    }
+  }
+
   // ADDS FUNCTIONALITY TO THE SETEVENTLISTENERS METHOD
 
   setEventListeners() {

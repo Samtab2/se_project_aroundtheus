@@ -6,6 +6,7 @@ import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForms from "../components/ModalWithForms.js";
 import Api from "../components/Api.js";
 
+
 import {
   config,
   profileEditButton,
@@ -124,6 +125,8 @@ const confirmationModal = new ModalWithForms(
   config
 );
 
+
+
 // FUNCTION PROFILE EDIT SUBMIT
 function handleProfileFormSubmit(inputValues) {
   profileEditModal.renderingSaving(true);
@@ -166,12 +169,14 @@ function handleAddImageFormSubmit(inputValues) {
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
   confirmationModal.open();
-  confirmationModal.setSubmitHandler(() => {
-    confirmationModal.renderingSaving(true);
+  const callback = () => {
+  confirmationModal.setCallback(() => {
+    confirmationModal.renderingSaving();
     api
       .deleteCard(card.getId())
       .then(() => {
         card.deleteCard();
+        confirmationModal.renderingSaving(false);
         confirmationModal.close();
       })
       .catch(console.error)
@@ -179,8 +184,9 @@ function handleDeleteClick(card) {
         confirmationModal.renderingSaving(false);
       });
   });
+  callback();
 }
-
+}
 
 
 
@@ -195,11 +201,8 @@ function handleLikeClick(card) {
 // AVATAR EDIT SUBMIT
 function handleAvatarFormSubmit(Values) {
   avatarEditModal.renderingSaving(true);
-  const newData = {
-    link: Values,
-  };
   api
-    .changeAvatar(newData)
+    .changeAvatar(Values)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
       avatarEditModal.close();

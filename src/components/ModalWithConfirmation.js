@@ -7,10 +7,10 @@ export default class ModalWithConfirmation extends Modal {
     this._originalButtonText = this._button.textContent;
   }
 
-  renderingSaving() {
+  renderingSaving(isSaving) {
     isSaving
-      ? (this._button.textContent = "Saving...")
-      : (this._button.textContent = this._originalButtonText);
+    ? (this._button.textContent = "Saving...")
+    : (this._button.textContent = this._originalButtonText);
   }
 
   setCallback(callback) {
