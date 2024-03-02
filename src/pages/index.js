@@ -159,12 +159,14 @@ function handleAddImageFormSubmit(inputValues) {
       const cardElement = createCard(res);
       cardsContainer.addItem(cardElement);
       addImageModal.close();
+      formValidators.resetValidation();
     })
     .catch(console.error)
     .finally(() => {
-      addImageModal.renderingSaving(false);
+      addImageModal.renderingSaving(false)
     });
 }
+
 
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
