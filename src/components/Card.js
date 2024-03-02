@@ -43,8 +43,8 @@ export default class Card {
 
   renderLikeCard() {
     this.isLiked
-      ? this._likeButton.classList.toggle("cards__like-button_active")
-      : this._likeButton.classList.toggle("cards__like-button_active");
+      ? this._likeButton.classList.add("cards__like-button_active")
+      : this._likeButton.classList.remove("cards__like-button_active");
   }
 
   deleteCard() {
