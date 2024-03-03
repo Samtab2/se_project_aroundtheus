@@ -146,6 +146,7 @@ function handleProfileFormSubmit(inputValues) {
   profileEditModal.close();
 }
 
+
 // FUNCTION ADD IMAGE SUBMIT
 function handleAddImageFormSubmit(inputValues) {
   addImageModal.renderingSaving(true);
@@ -166,12 +167,11 @@ function handleAddImageFormSubmit(inputValues) {
       addImageModal.renderingSaving(false)
     });
 }
-
+console.log(avatarEditModal);
 
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
-  confirmationModal.open();
-  const callback = () => {
+  confirmationModal.open()
   confirmationModal.setCallback(() => {
     confirmationModal.renderingSaving();
     api
@@ -186,9 +186,8 @@ function handleDeleteClick(card) {
         confirmationModal.renderingSaving(false);
       });
   });
-  callback();
 }
-}
+
 
 
 
