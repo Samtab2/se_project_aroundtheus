@@ -167,7 +167,7 @@ function handleAddImageFormSubmit(inputValues) {
       addImageModal.renderingSaving(false)
     });
 }
-console.log(avatarEditModal);
+
 
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
