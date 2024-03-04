@@ -79,7 +79,8 @@
 }
 
 .profile__image:hover .profile__edit-button {
-  opacity: 1;
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 760px) {

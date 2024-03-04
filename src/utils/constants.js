@@ -58,7 +58,14 @@ export const formList = Array.from(
 
 // EMPTY THE FORMS
 
-export const formValidators = {};
+export const formValidators = {
+  resetForm() {
+    formList.forEach((form) => {
+      form.reset();
+    })
+  }
+};
+
 
 
 

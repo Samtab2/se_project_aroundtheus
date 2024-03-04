@@ -17,10 +17,12 @@ export default class ModalWithForms extends Modal {
   // METHOD FOR CHANGING THE BUTTON TEXT
 
   renderingSaving(isSaving) {
-    isSaving
-      ? (this._button.textContent = "Saving...")
-      : (this._button.textContent = this._originalButtonText);
-  }
+    if (isSaving) {
+      this._button.textContent = "Saving...";
+    } else {
+      this._button.textContent = this._originalButtonText;
+    }
+    }
 
   // METHODS COLLECTS THE INPUTS VALUES
 

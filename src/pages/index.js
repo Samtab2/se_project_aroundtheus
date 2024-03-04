@@ -159,9 +159,9 @@ function handleAddImageFormSubmit(inputValues) {
     .addCard(newData)
     .then((res) => {
       const cardElement = createCard(res);
+      formValidators.resetForm();
       cardsContainer.addItem(cardElement);
       addImageModal.close();
-      formValidators.resetValidation();
     })
     .catch(console.error)
     .finally(() => {
@@ -174,7 +174,7 @@ function handleAddImageFormSubmit(inputValues) {
 function handleDeleteClick(card) {
   confirmationModal.open()
   confirmationModal.setCallback(() => {
-    confirmationModal.renderingSaving(true);
+    confirmationModal.renderingSaving(false);
     api
       .deleteCard(card.getId())
       .then(() => {
