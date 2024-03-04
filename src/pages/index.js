@@ -16,6 +16,7 @@ import {
   formValidators,
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
+import ModalWithConfirmation from "../components/ModalWithConfirmation.js";
 
 // CREATE NEW USER INFO
 const userInfo = new UserInfo({
@@ -23,6 +24,7 @@ const userInfo = new UserInfo({
   descriptionSelector: ".profile__description",
   avatarSelector: ".profile__image",
 });
+const avatarEditButton = document.querySelector(".profile__image");
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -116,10 +118,9 @@ const avatarEditModal = new ModalWithForms(
   config
 );
 
-const avatarEditButton = document.querySelector("#avatar-edit-button");
 
 // CREATE A MODALWITHFORM FOR DELETE CONFIRMATION
-const confirmationModal = new ModalWithForms(
+const confirmationModal = new ModalWithConfirmation(
   "#delete-confirmation-modal",
   handleDeleteClick,
   config
@@ -173,20 +174,22 @@ function handleAddImageFormSubmit(inputValues) {
 function handleDeleteClick(card) {
   confirmationModal.open()
   confirmationModal.setCallback(() => {
-    confirmationModal.renderingSaving();
+    confirmationModal.renderingSaving(true);
     api
       .deleteCard(card.getId())
       .then(() => {
         card.deleteCard();
-        confirmationModal.renderingSaving(false);
         confirmationModal.close();
       })
-      .catch(console.error)
+      .catch((err) => {
+        console.error(err);
+      })
       .finally(() => {
         confirmationModal.renderingSaving(false);
       });
   });
 }
+
 
 
 
@@ -245,4 +248,4 @@ confirmationModal.setEventListeners();
 // ADD EVENT LISTENERS TO THE AVATAR EDIT BUTTON
 avatarEditButton.addEventListener("click", () => {
   avatarEditModal.open();
-});
+})
