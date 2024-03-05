@@ -208,7 +208,9 @@ function handleLikeClick(card) {
 function handleAvatarFormSubmit(avatar) {
   avatarEditModal.renderingSaving(true);
   api
-    .changeAvatar(avatar.link)
+    .changeAvatar({
+      url: avatar.url,
+    })
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
       avatarEditModal.close();
@@ -218,6 +220,7 @@ function handleAvatarFormSubmit(avatar) {
       avatarEditModal.renderingSaving(false);
     });
 }
+
 
 // ADD A CLICK EVENT LISTENER TO THE PROFILE EDIT BUTTON
 profileEditButton.addEventListener("click", () => {
