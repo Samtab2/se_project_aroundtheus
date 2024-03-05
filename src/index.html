@@ -18,10 +18,8 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src=""
-            alt="Avatar"
-            class="profile__image" />
+          <img src="" alt="avatar" class="profile__image" />
+          <img class="profile__image-edit" src="a1892ea72cb87c8fc3aa.svg" />
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -151,17 +149,22 @@
         <h2 class="modal__image-title"></h2>
       </div>
     </div>
-   
+
     <!--CHANGE PROFILE PICTURE MODAL-->
     <div class="modal" id="modal-change-picture">
       <div class="modal__container">
-        <button class="modal__close"
-          type="button"></button>
+        <button class="modal__close" type="button"></button>
         <p class="modal__heading">Change profile picture</p>
         <form class="modal__form" name="change-avatar-picture" novalidate>
-        <input type="url" class="modal__input" id="urlInput" name="url" placeholder="Image URL" required />
-        <span class="modal__error" id="urlInput-error"></span>
-        <button class="modal__button" type="submit">Create</button>
+          <input
+            type="url"
+            class="modal__input"
+            id="urlInput"
+            name="url"
+            placeholder="Image URL"
+            required />
+          <span class="modal__error" id="urlInput-error"></span>
+          <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
     </div>
@@ -170,11 +173,9 @@
       <div class="modal__container">
         <button class="modal__close"></button>
         <p class="modal__heading">Are you sure?</p>
-        <input class="modal__input" type="hidden" name="id" value="" />
+        <form class="modal__form" name="delete-card-form" novalidate>
         <button class="modal__button" type="submit">Yes</button>
       </div>
     </div>
-
   </body>
 </html>
-

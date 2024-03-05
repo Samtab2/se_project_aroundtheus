@@ -78,7 +78,17 @@
   border-radius: 50%;
 }
 
-.profile__image:hover .profile__edit-button {
+.profile__image-edit {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  background-color: transparent;
+  margin: auto;
+  margin-left: 47px;
+  z-index: -1;
+}
+
+.profile__image:hover {
   opacity: 0.6;
   cursor: pointer;
 }

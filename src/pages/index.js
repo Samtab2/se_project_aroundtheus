@@ -122,8 +122,10 @@ const avatarEditModal = new ModalWithForms(
 // CREATE A MODALWITHFORM FOR DELETE CONFIRMATION
 const confirmationModal = new ModalWithConfirmation(
   "#delete-confirmation-modal",
-  handleDeleteClick,
-  config
+{
+  submitButtonSelector: ".modal__button",
+  formSelector: ".modal__form",
+}
 );
 
 
@@ -203,10 +205,10 @@ function handleLikeClick(card) {
 }
 
 // AVATAR EDIT SUBMIT
-function handleAvatarFormSubmit(link) {
+function handleAvatarFormSubmit(avatar) {
   avatarEditModal.renderingSaving(true);
   api
-    .changeAvatar(link)
+    .changeAvatar(avatar.link)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
       avatarEditModal.close();

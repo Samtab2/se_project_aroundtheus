@@ -6,7 +6,9 @@ export default class ModalWithConfirmation extends Modal {
     this._button = this._modalElement.querySelector(submitButtonSelector);
     this._callback = null;
     this._form = this._modalElement.querySelector(formSelector);
+    this._originalButtonText = this._button.textContent;
   }
+
 
   renderingSaving(isSaving) {
    if (isSaving) {
@@ -22,14 +24,14 @@ export default class ModalWithConfirmation extends Modal {
 
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener("submit", (e) => {
+    if (this._form) {
+      this._form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const inputValues = this._getInputValues();
-      this._formSubmit(inputValues, e);
       if (this._callback) {
         this._callback(e);
       }
       this.renderingSaving(false);
     });
+  }
   }
 }
