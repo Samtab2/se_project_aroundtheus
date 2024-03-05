@@ -22,16 +22,14 @@ export default class ModalWithConfirmation extends Modal {
 
   setEventListeners() {
     super.setEventListeners();
-    if (this._form) {
-      this._form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const inputValues = this._getInputValues();
-        this._formSubmit(inputValues, e);
-        if (this._callback) {
-          this._callback(e);
-        }
-        this.renderingSaving(false);
-      });
-    }
+    this._form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const inputValues = this._getInputValues();
+      this._formSubmit(inputValues, e);
+      if (this._callback) {
+        this._callback(e);
+      }
+      this.renderingSaving(false);
+    });
   }
 }

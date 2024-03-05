@@ -203,10 +203,10 @@ function handleLikeClick(card) {
 }
 
 // AVATAR EDIT SUBMIT
-function handleAvatarFormSubmit(Values) {
+function handleAvatarFormSubmit(link) {
   avatarEditModal.renderingSaving(true);
   api
-    .changeAvatar(Values)
+    .changeAvatar(link)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
       avatarEditModal.close();
