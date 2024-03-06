@@ -85,7 +85,9 @@
   background-color: transparent;
   margin: auto;
   margin-left: 47px;
+  margin-top: 47px;
   z-index: -1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .profile__image:hover {

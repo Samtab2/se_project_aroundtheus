@@ -151,6 +151,7 @@ function handleProfileFormSubmit(inputValues) {
 
 
 // FUNCTION ADD IMAGE SUBMIT
+
 function handleAddImageFormSubmit(inputValues) {
   addImageModal.renderingSaving(true);
   const newData = {
@@ -162,6 +163,7 @@ function handleAddImageFormSubmit(inputValues) {
     .then((res) => {
       const cardElement = createCard(res);
       formValidators.resetForm();
+      formValidators['add-card-form'].resetValidation();
       cardsContainer.addItem(cardElement);
       addImageModal.close();
     })
@@ -170,6 +172,10 @@ function handleAddImageFormSubmit(inputValues) {
       addImageModal.renderingSaving(false)
     });
 }
+
+
+ 
+
 
 
 // DELETE CARD FUNCTION
