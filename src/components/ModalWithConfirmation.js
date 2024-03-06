@@ -30,7 +30,6 @@ export default class ModalWithConfirmation extends Modal {
       if (this._callback) {
         this._callback(e);
       }
-      this.renderingSaving(false);
     });
   }
   }

@@ -79,6 +79,7 @@
 }
 
 .profile__image-edit {
+  background: url(../images/Profile-edit-image.svg) center no-repeat;
   width: 26px;
   height: 26px;
   position: absolute;

@@ -12,7 +12,7 @@ export default class Api {
   }
   }
 
-  async _request(url, options) {
+   _request(url, options) {
     return fetch(url, options).then(this._checkResponse);  
   }
 

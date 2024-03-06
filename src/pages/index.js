@@ -14,6 +14,7 @@ import {
   profileInputList,
   formList,
   formValidators,
+  initialCards,
 } from "../utils/constants.js";
 import UserInfo from "../components/UserInfo.js";
 import ModalWithConfirmation from "../components/ModalWithConfirmation.js";
@@ -34,16 +35,31 @@ const api = new Api({
   },
 });
 
-api
-  .getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo({
-      name: res.name,
-      description: res.about,
-    });
-    userInfo.setUserAvatar(res.avatar);
-  })
-  .catch(console.error);
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+.then(([userInfoResponse, initialCardsResponse]) => {
+  // SET USER INFO
+  userInfo.setUserInfo({
+      name: userInfoResponse.name,
+      description: userInfoResponse.about,
+  });
+  userInfo.setUserAvatar(userInfoResponse.avatar);
+
+  // RENDER CARDS
+  cardsContainer = new Section({
+      items: initialCardsResponse,
+      renderer: (cardData) => {
+          const cardElement = createCard(cardData);
+          cardsContainer.addItem(cardElement);
+      },
+  }, ".cards__list");
+  
+  // CALL RENDER FUNCTION
+  cardsContainer.renderItems();
+})
+.catch(console.error);
 
 let cardsContainer;
 
@@ -63,27 +79,7 @@ function handleImageClick(name, link) {
 
 const previewModal = new ModalWithImage("#preview__image-modal");
 
-// CREATE CARDS CONTAINER
-api
-  .getInitialCards()
-  .then((res) => {
-    cardsContainer = new Section(
-      {
-        items: res,
-        renderer: (cardData) => {
-          createCard(cardData);
-          const cardElement = createCard(cardData);
-          cardsContainer.addItem(cardElement);
-        },
-      },
-      ".cards__list"
-    );
 
-    // CALL RENDER FUNCTION
-    cardsContainer.renderItems();
-  })
-
-  .catch(console.error);
 
 // CREATE CARD
 function createCard(cardData) {
@@ -146,7 +142,6 @@ function handleProfileFormSubmit(inputValues) {
     .finally(() => {
       profileEditModal.renderingSaving(false);
     });
-  profileEditModal.close();
 }
 
 
@@ -180,6 +175,7 @@ function handleAddImageFormSubmit(inputValues) {
 
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
+  confirmationModal.setLoading(true);
   confirmationModal.open()
   confirmationModal.setCallback(() => {
     confirmationModal.renderingSaving(false);
@@ -193,6 +189,7 @@ function handleDeleteClick(card) {
         console.error(err);
       })
       .finally(() => {
+        confirmationModal.setLoading(false);
         confirmationModal.renderingSaving(false);
       });
   });
@@ -204,8 +201,10 @@ function handleDeleteClick(card) {
 
 // LIKE CLICK FUNCTION
 function handleLikeClick(card) {
+  const cardId = card.getId();
+  const isLiked = card.isLiked;
   api
-    .likeCard(card.getId(), card.isLiked)
+    .likeCard(cardId, isLiked)
     .then((res) => card.toggleLikeCard(res.isLiked))
     .catch(console.error);
 }
