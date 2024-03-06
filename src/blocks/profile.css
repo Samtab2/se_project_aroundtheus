@@ -78,6 +78,24 @@
   border-radius: 50%;
 }
 
+.profile__image-edit {
+  background: url(../images/Profile-edit-image.svg) center no-repeat;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  background-color: transparent;
+  margin: auto;
+  margin-left: 47px;
+  margin-top: 47px;
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__image:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 760px) {
   .profile {
     flex-direction: column;

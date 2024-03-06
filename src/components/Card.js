@@ -1,33 +1,57 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
+  constructor(
+    data,
+    cardSelector,
+    handleImageClick,
+    handleDeleteClick,
+    handleLikeClick
+  ) {
     this._handleImageClick = handleImageClick;
     this._cardSelector = cardSelector;
-    this._link = link;
-    this._name = name;
+    this._link = data.link;
+    this._name = data.name;
+    this._handleLikeClick = handleLikeClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._id = data._id;
+    this._isLiked = data.isLiked;
+  }
+
+  // METHOD FOR CARD ELEMENT OUT OF THE TEMPLATE
+  getId() {
+    return this._id;
+  }
+
+  getIsLiked() {
+    return this._isLiked;
   }
 
   _setEventListeners() {
-    this._likeButton
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-      });
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeClick(this);
+    });
 
-    this._trashButton
-      .addEventListener("click", () => {
-        this._handleDeleteIcon();
-      });
+    this._trashButton.addEventListener("click", () => {
+      this._handleDeleteClick(this); 
+    });
 
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick(this._name, this._link);
     });
   }
 
-  _handleLikeIcon() {
-    this._likeButton
-      .classList.toggle("cards__like-button_active");
+  // METHODS FOR CARD ELEMENT IN THE TEMPLATE
+  toggleLikeCard(isLiked) {
+    this._isLiked = isLiked;
+    this.renderLikeCard();
   }
 
-  _handleDeleteIcon() {
+  renderLikeCard() {
+    this._isLiked
+      ? this._likeButton.classList.add("cards__like-button_active")
+      : this._likeButton.classList.remove("cards__like-button_active");
+  }
+
+  deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
@@ -48,7 +72,8 @@ export default class Card {
     this._cardTitleEl.textContent = this._name;
 
     this._setEventListeners();
-    
+    this.renderLikeCard();
+
     return this._cardElement;
   }
 }
