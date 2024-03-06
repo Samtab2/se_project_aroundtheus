@@ -175,7 +175,6 @@ function handleAddImageFormSubmit(inputValues) {
 
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
-  confirmationModal.renderingSaving(true);
   confirmationModal.open()
   confirmationModal.setCallback(() => {
     confirmationModal.renderingLoading(true);
@@ -189,7 +188,6 @@ function handleDeleteClick(card) {
         console.error(err);
       })
   .finally(() => {
-        confirmationModal.renderingSaving(false);
         confirmationModal.renderingLoading(false);
       });
   });
@@ -202,7 +200,7 @@ function handleDeleteClick(card) {
 // LIKE CLICK FUNCTION
 function handleLikeClick(card) {
   const cardId = card.getId();
-  const isLiked = card.isLiked;
+  const isLiked = card.getIsLiked();
   api
     .likeCard(cardId, isLiked)
     .then((res) => card.toggleLikeCard(res.isLiked))

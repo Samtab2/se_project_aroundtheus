@@ -21,6 +21,10 @@ export default class Card {
     return this._id;
   }
 
+  getIsLiked() {
+    return this._isLiked;
+  }
+
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
       this._handleLikeClick(this);
@@ -37,12 +41,12 @@ export default class Card {
 
   // METHODS FOR CARD ELEMENT IN THE TEMPLATE
   toggleLikeCard(isLiked) {
-    this.isLiked = isLiked;
+    this._isLiked = isLiked;
     this.renderLikeCard();
   }
 
   renderLikeCard() {
-    this.isLiked
+    this._isLiked
       ? this._likeButton.classList.add("cards__like-button_active")
       : this._likeButton.classList.remove("cards__like-button_active");
   }

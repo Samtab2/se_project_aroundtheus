@@ -9,15 +9,6 @@ export default class ModalWithConfirmation extends Modal {
     this._originalButtonText = this._button.textContent;
   }
 
-
-  renderingSaving(isSaving) {
-   if (isSaving) {
-     this._button.textContent = "Deleting...";
-   }  else {
-     this._button.textContent = this._originalButtonText;
-   }
-  }
-
   setCallback(callback) {
     this._callback = callback;
   }
