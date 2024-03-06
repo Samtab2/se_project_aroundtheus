@@ -8,12 +8,12 @@ export default class Api {
     if (res.ok) {
       return res.json();
     } else {
-    return Promise.reject(`Error: ${res.status}`);
-  }
+      return Promise.reject(`Error: ${res.status}`);
+    }
   }
 
-   _request(url, options) {
-    return fetch(url, options).then(this._checkResponse);  
+  _request(url, options) {
+    return fetch(url, options).then(this._checkResponse);
   }
 
   getUserInfo() {
@@ -38,7 +38,6 @@ export default class Api {
       }),
     });
   }
-
 
   addCard({ name, link }) {
     return this._request(`${this._baseUrl}/cards`, {
@@ -74,13 +73,4 @@ export default class Api {
       }),
     });
   }
-
-
-  
-
-
-} 
-
-
-
-
+}

@@ -22,6 +22,14 @@ export default class ModalWithConfirmation extends Modal {
     this._callback = callback;
   }
 
+  renderingLoading(isLoading) {
+    if (isLoading) {
+      this._button.textContent = "Deleting...";
+    } else {
+      this._button.textContent = this._originalButtonText;
+    }
+  }
+
   setEventListeners() {
     super.setEventListeners();
     if (this._form) {

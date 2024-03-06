@@ -175,10 +175,10 @@ function handleAddImageFormSubmit(inputValues) {
 
 // DELETE CARD FUNCTION
 function handleDeleteClick(card) {
-  confirmationModal.setLoading(true);
+  confirmationModal.renderingSaving(true);
   confirmationModal.open()
   confirmationModal.setCallback(() => {
-    confirmationModal.renderingSaving(false);
+    confirmationModal.renderingLoading(true);
     api
       .deleteCard(card.getId())
       .then(() => {
@@ -188,9 +188,9 @@ function handleDeleteClick(card) {
       .catch((err) => {
         console.error(err);
       })
-      .finally(() => {
-        confirmationModal.setLoading(false);
+  .finally(() => {
         confirmationModal.renderingSaving(false);
+        confirmationModal.renderingLoading(false);
       });
   });
 }
